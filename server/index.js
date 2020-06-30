@@ -10,7 +10,7 @@ const router = require('./router')
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-
+app.use(express.static('../dist'));
 app.use(bodyParse.urlencoded({ extended: false }));
 app.use(bodyParse.json());
 app.use(router)

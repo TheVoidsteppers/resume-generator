@@ -1,4 +1,8 @@
+// eslint-disable-next-line
 const path = require('path');
+// eslint-disable-next-line
+const { SERVERPORT } = require('./config');
+
 function resolve(dir) {
   return path.resolve(process.cwd(), dir)
 }
@@ -14,10 +18,10 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        "target": "http://localhost:3000",
+        "target": `http://localhost:${SERVERPORT}`,
         "changeOrigin": true,
         "pathRewrite": {
-          "^/": ""
+          "^/api": ""
         }
       }
     }

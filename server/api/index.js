@@ -43,4 +43,9 @@ router.post('/resume', (req, res) => {
   })
 
 })
+
+router.get('*', (req, res) => {
+  console.log(req.body);
+})
+
 module.exports = router;

@@ -12,8 +12,7 @@
             :key="item.value"
             :label="item.label"
             :value="item.value"
-          >
-          </el-option>
+          ></el-option>
         </el-select>
         <el-button size="small" type="primary" @click="handleSave"
           >保存</el-button
@@ -23,7 +22,11 @@
         >
       </el-header>
       <el-main>
-        <div ref="resume"></div>
+        <div ref="resume">
+          <div class="base-info">
+            <el-image :src="dataObj.personalInfo.img" fit="cover"></el-image>
+          </div>
+        </div>
       </el-main>
     </el-container>
   </div>
@@ -38,11 +41,14 @@ export default {
       themes: [
         {
           label: "蓝",
-          value: "blur"
+          value: "blue"
         }
       ],
       dataObj: {
-        theme: ""
+        theme: "",
+        personalInfo: {
+          img: "./avatar.png"
+        }
       }
     };
   },

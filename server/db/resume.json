@@ -1,1 +1,6 @@
-{"theme":"blur"}
+{
+  "theme": "",
+  "personalInfo": {
+    "img": "http://localhost:3000/images/avatar.png"
+  }
+}

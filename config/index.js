@@ -1,0 +1,3 @@
+const SERVERPORT = 3000
+
+exports.SERVERPORT = SERVERPORT

@@ -15,8 +15,10 @@
           >
           </el-option>
         </el-select>
-        <el-button size="small" type="primary">保存</el-button>
-        <el-button size="small" type="primary" @click="exportPdf"
+        <el-button size="small" type="primary" @click="handleSave"
+          >保存</el-button
+        >
+        <el-button size="small" type="primary" @click="handleExportPdf"
           >导出为pdf</el-button
         >
       </el-header>
@@ -44,11 +46,42 @@ export default {
       }
     };
   },
+  mounted() {
+    this.fetchResumeData();
+  },
   methods: {
     // 导出为 pdf
-    exportPdf() {
+    handleExportPdf() {
       const ele = this.$refs.resume;
       html2pdf(ele.$el);
+    },
+    async fetchResumeData() {
+      const res = await this.axios.get("/api/resume");
+      const { code, msg, systemMsg, object } = res.data;
+      if (code === 0) {
+        this.dataObj = JSON.parse(object);
+      } else {
+        this.$notify({
+          title: "错误",
+          message: systemMsg || msg,
+          type: "error"
+        });
+      }
+    },
+    // 保存数据
+    async handleSave() {
+      const res = this.axios.post("/api/resume", this.dataObj);
+      const { code, msg, systemMsg, object } = res.data;
+
+      if (code === 0) {
+        console.log(object);
+      } else {
+        this.$notify({
+          title: "错误",
+          message: systemMsg || msg,
+          type: "error"
+        });
+      }
     }
   }
 };

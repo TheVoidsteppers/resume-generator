@@ -15,10 +15,7 @@ app.use(bodyParse.urlencoded({ extended: false }));
 app.use(bodyParse.json());
 app.use(router)
 
-// app.use('/', (req, res) => {
-//   res.send('222')
-// });
-
+app.use('/', Api)
 
 app.listen(3000, () => {
   console.log(`
